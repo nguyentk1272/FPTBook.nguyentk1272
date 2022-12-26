@@ -8,9 +8,9 @@ namespace FPTBook.Models
         [Key]
         public int UserId { get; set; }
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Title { get; set; }   
         public float Price { get; set; }
-        public Category Category { get; set; }
+        public Genre Genre { get; set; }
         public DateTime OrderedAt { get; set; } = DateTime.Now;
     }
 }
