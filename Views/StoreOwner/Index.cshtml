@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<Book>
-<h1>Index of Todo</h1>
+<h1>Index of Book</h1>
 
 
 <div class="form-group">
     <a asp-controller="StoreOwner"
-       asp-action="Insert" class="btn btn-primary">Create new Books</a>
+       asp-action="Insert" class="btn btn-primary">Create new Book</a>
 </div>
 
 <div class="form-group">
     <form>
         <input type="text" name="genre" placeholder="Search by Genre" />
-        <button type="submit" class="btn btn-primary">Search</button>
+        <button type="submit" class="btn btn-outline-primary">Search</button>
     </form>
 </div>
 
@@ -19,10 +19,10 @@
     <thead>
     <th scope="col">ID</th>
     <th scope="col">Title</th>
-    <th scope="col">Description</th>
+    <th scope="col">Author</th>
     <th scope="col">Status</th>
     <th scope="col">Genre</th>
-    <th scope="col">Action</th>
+    <th scope="col">Actions</th>
     <th scope="col"></th>
     </thead>
     <tbody>
@@ -30,12 +30,14 @@
      <tr>
             <th scope="row">@item.BookId</th>
                 <td>@item.Title</td>
-            <td>@item.Description</td>
+            <td>@item.Author</td>
             <td>@item.BookStatus.ToString()</td>
             <td>@item.Genre.Description</td>
-            <td><button class="btn btn-primary">Details</button>
-            <button class="btn btn-danger">Delete</button>
-            <button class="btn btn-danger">Edit</button></td>
+            <td>
+                <button class="btn btn-primary">Details</button>
+                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-danger">Edit</button>
+            </td>
      </tr>
      
        
