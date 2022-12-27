@@ -8,11 +8,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-using static IdentityServer3.Core.Events.EventConstants;
+
 
 namespace FPTBook.Controllers
 {
@@ -129,24 +130,42 @@ namespace FPTBook.Controllers
             return View(user);
 
         }
-
-        /*public IActionResult ApproveGenre()
+        public IActionResult GenreApproval()
         {
-
-        }
-
-        public IActionResult RejectGenre()
-        {
-
-        }
-
-        [HttpPost]
-        public IActionResult AddApprovedGenre()
-        {
-            IEnumerable<Genre> genres = _context.Genres.Where(t => t.)
-                    .Include(t => t.ApplicationUser)
-                    .ToList();
+            IEnumerable<Genre> genres = _context.Genres
+                                                .Where(t => t.Status == Enums.GenreApproval.pending)
+                                                .ToList();
             return View(genres);
-        }*/
+        }
+        public IActionResult ApproveGenre(int id)
+        {
+            var genreInDb = _context.Genres.SingleOrDefault(t => t.Id == id);
+            if (genreInDb is null)
+            {
+                return BadRequest();
+            }
+
+            genreInDb.Status = Enums.GenreApproval.approved;
+            
+            _context.SaveChanges();
+            return RedirectToAction("GenreApproval");
+        }
+
+
+        public IActionResult RejectGenre(int id)
+        {
+            var genreInDb = _context.Genres.SingleOrDefault(t => t.Id == id);
+            if (genreInDb is null)
+            {
+                return BadRequest();
+            }
+
+            genreInDb.Status = Enums.GenreApproval.rejected;
+
+            _context.SaveChanges();
+            return RedirectToAction("GenreApproval");
+        }
+
+       
     }
 }
