@@ -4,14 +4,16 @@ using FPTBook.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FPTBook.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220815060607_AddBooksAndGenresTable")]
+    partial class AddBooksAndGenresTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +27,6 @@ namespace FPTBook.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(255)")
@@ -50,43 +49,16 @@ namespace FPTBook.Data.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.HasKey("BookId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("GenreId");
-
-                    b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("FPTBook.Models.Cart", b =>
-                {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
+                    b.HasKey("BookId");
 
-                    b.Property<DateTime>("OrderedAt")
-                        .HasColumnType("datetime2");
+                    b.HasIndex("GenreId");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
+                    b.HasIndex("UserId");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("Carts");
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("FPTBook.Models.Genre", b =>
@@ -131,29 +103,6 @@ namespace FPTBook.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "b74ddd14-6340-4840-95c2-db12554843e5",
-                            ConcurrencyStamp = "1",
-                            Name = "customer",
-                            NormalizedName = "customer"
-                        },
-                        new
-                        {
-                            Id = "87az93ba-d201-2597-edc1-d211f91b7cb1",
-                            ConcurrencyStamp = "2",
-                            Name = "storeowner",
-                            NormalizedName = "storeowner"
-                        },
-                        new
-                        {
-                            Id = "c7b013f0-5201-4317-abd8-c211f91b7330",
-                            ConcurrencyStamp = "3",
-                            Name = "admin",
-                            NormalizedName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -350,30 +299,15 @@ namespace FPTBook.Data.Migrations
 
             modelBuilder.Entity("FPTBook.Models.Book", b =>
                 {
-                    b.HasOne("FPTBook.Models.ApplicationUser", null)
-                        .WithMany("books")
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("FPTBook.Models.Genre", "Genre")
                         .WithMany("Books")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FPTBook.Models.Cart", b =>
-                {
-                    b.HasOne("FPTBook.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.HasOne("FPTBook.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("books")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

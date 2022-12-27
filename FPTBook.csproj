@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,9 +8,22 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20220812034548_SeedRoles.cs" />
     <Compile Remove="Data\Migrations\20220812034548_SeedRoles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815050506_AddBooksTableandGenresTable.cs" />
+    <Compile Remove="Data\Migrations\20220815050506_AddBooksTableandGenresTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815050933_AddBookAndGenre.cs" />
+    <Compile Remove="Data\Migrations\20220815050933_AddBookAndGenre.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815052713_AddBooksAndGenres.cs" />
+    <Compile Remove="Data\Migrations\20220815052713_AddBooksAndGenres.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815060511_AddBooksTable.cs" />
+    <Compile Remove="Data\Migrations\20220815060511_AddBooksTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815102815_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220815102815_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815105317_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220815105317_AddCartBook.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.27" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.25" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.25" />
