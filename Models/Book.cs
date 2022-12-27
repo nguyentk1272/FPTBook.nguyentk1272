@@ -1,5 +1,6 @@
-﻿using FPTBook.Enums;
-
+﻿using FPTBook.Data;
+using FPTBook.Enums;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,14 +13,15 @@ namespace FPTBook.Models
         [Required(ErrorMessage = "There is no title for this book")]
         [StringLength(255)]
         public string Title { get; set; }
+        [Required(ErrorMessage = "There is no price for this book")]
         public float Price { get; set; }
         [StringLength(255)]
-        public string Description { get; set; }
-        public BookStatus Status { get; set; }
+        public string Author { get; set; }
+        public BookStatus BookStatus { get; set; } 
         [Required]
         [ForeignKey("Genre")]
         public int GenreId { get; set; }
-        public Category Category { get; set; }
+        public Genre Genre { get; set; }
         public byte[] ImageData { get; set; }
     }
 }

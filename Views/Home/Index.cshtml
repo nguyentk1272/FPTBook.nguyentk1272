@@ -1,8 +1,53 @@
-﻿@{
+﻿@using FPTBook.Utils
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<style>
+    .container{
+       position: relative;
+    }
+    .hero-image{
+       filter: blur(2px);
+       width: 100%;
+    }
+    .hero-text{
+       text-align: center;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       color: white;
+    }
+</style>
+
+
+   @if (!User.Identity.IsAuthenticated)
+  {
+    <h3 class="text-center">Register for New User</h3>
+    <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-secondary text-center">Register your account</a>
+}
+else{
+    if (User.IsInRole(Role.CUSTOMER))
+    {
+        <div class="container">
+        <img class="hero-image" src="https://images.pexels.com/photos/214659/pexels-photo-214659.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+        <div class="hero-text">
+        <h1 class="display-2">FPTBook</h1>
+        <p class="display-4">All you can find</p>
+                <a asp-controller="Customer" asp-action="Index" class="btn btn-primary">Shop now</a>
+      </div>
+     </div>
+        }
+        if (User.IsInRole(Role.ADMIN))
+        {
+            <a asp-controller="Admin" asp-action="Index" class="btn btn-primary">Manage Admin</a>
+        }
+        if (User.IsInRole(Role.OWNER))
+        {
+            <a asp-controller="StoreOwner" asp-action="Index" class="btn btn-primary">Manage Store</a>
+        }
+  }
+ 
+   
+   

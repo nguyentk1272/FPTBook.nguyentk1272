@@ -1,0 +1,19 @@
+﻿@model Book
+
+<div class="form-group">
+  <a asp-controller="StoreOwner" asp-action="Index" class="btn btn-outline-danger">
+    Back to Index
+  </a>
+</div>
+
+<h1 class="display-2 text-center">Detail Card</h1>
+
+<div class="card" style="width:15rem">
+    <img class="card-img-top" src="@ViewBag.ImageData" alt="Card Image" />
+  <div class="card-body">
+    <h4 class="card-title">@Model.Title</h4>
+    <p class="card-text ">Author: @Model.Author</p>
+    <p class="card-text "> Price: @Model.Price</p>
+    <p class="card-text ">Genre: @Model.Genre.Description</p>
+  </div>
+</div>
