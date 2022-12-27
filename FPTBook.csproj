@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,9 +8,42 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20220812034548_SeedRoles.cs" />
     <Compile Remove="Data\Migrations\20220812034548_SeedRoles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815050506_AddBooksTableandGenresTable.cs" />
+    <Compile Remove="Data\Migrations\20220815050506_AddBooksTableandGenresTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815050933_AddBookAndGenre.cs" />
+    <Compile Remove="Data\Migrations\20220815050933_AddBookAndGenre.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815052713_AddBooksAndGenres.cs" />
+    <Compile Remove="Data\Migrations\20220815052713_AddBooksAndGenres.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815060511_AddBooksTable.cs" />
+    <Compile Remove="Data\Migrations\20220815060511_AddBooksTable.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815102815_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220815102815_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815105317_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220815105317_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815111502_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220815111502_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815162903_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220815162903_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220816082133_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220816082133_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220816082437_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220816082437_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220816083444_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220816083444_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220816084533_AddOrder.cs" />
+    <Compile Remove="Data\Migrations\20220816084533_AddOrder.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220816092101_AddOrder.cs" />
+    <Compile Remove="Data\Migrations\20220816092101_AddOrder.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220816094341_AddOrder.cs" />
+    <Compile Remove="Data\Migrations\20220816094341_AddOrder.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220818123033_AddProfile.cs" />
+    <Compile Remove="Data\Migrations\20220818123033_AddProfile.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Abp" Version="7.3.0" />
+    <PackageReference Include="IdentityServer3" Version="2.6.3" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.27" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.25" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.25" />
