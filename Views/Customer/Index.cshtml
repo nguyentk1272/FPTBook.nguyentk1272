@@ -1,5 +1,59 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<Book>
+
+<h1 class="display-1 text-center">Welcome to our store</h1>
+
+<div class="form-group">
+    <form>
+        <input type="text" name="genre" placeholder="Search by Genre" />
+        <button type="submit" class="btn btn-outline-primary">Search</button>
+    </form>
+</div>
+
+  @foreach (var item in Model)
+  {
+    <div class="container py-5">
+        <div class="row">
+          <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
+            <div class="card">
+              <div class="d-flex justify-content-between p-3">
+                <p class="lead mb-0">@item.Title</p>
+                  @if ((int)@item.BookStatus == 1)
+                  {
+                    <div
+                            class="bg-info d-flex align-items-center justify-content-center shadow-1-strong"
+                            style="width: 70px; height: 35px;">
+                            <p class="text-white mb-0 small">In Stock</p>
+                    </div>
+                  } else
+                    {
+                       <div
+                            class="bg-danger d-flex align-items-center justify-content-center shadow-1-strong"
+                            style="width: 100px; height: 35px;">
+                            <p class="text-white mb-0 small">Out Of Stock</p>
+                       </div>          
+                    }
+                            </div>
+              <img src="@ViewBag.ImageData"/>
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <p class="small"><a href="#!" class="text-muted">@item.Genre.Description</a></p>
+                </div>
+
+                <div class="d-flex justify-content-between mb-3">
+                  <h5 class="mb-0">@item.Author</h5>
+                  <h5 class="text-dark mb-0">$ @item.Price</h5>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+  
+    
+
+
+   
