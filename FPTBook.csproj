@@ -22,9 +22,22 @@
     <Compile Remove="Data\Migrations\20220815105317_AddCartBook.Designer.cs" />
     <Compile Remove="Data\Migrations\20220815111502_AddCartBook.cs" />
     <Compile Remove="Data\Migrations\20220815111502_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220815162903_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220815162903_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220816082133_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220816082133_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220816082437_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220816082437_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220816083444_AddCartBook.cs" />
+    <Compile Remove="Data\Migrations\20220816083444_AddCartBook.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220816084533_AddOrder.cs" />
+    <Compile Remove="Data\Migrations\20220816084533_AddOrder.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220816092101_AddOrder.cs" />
+    <Compile Remove="Data\Migrations\20220816092101_AddOrder.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdentityServer3" Version="2.6.3" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.9" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.27" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.25" />
