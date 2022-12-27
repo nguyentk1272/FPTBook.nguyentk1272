@@ -1,5 +1,4 @@
-﻿using Abp.Collections.Extensions;
-using FPTBook.Data;
+﻿using FPTBook.Data;
 using FPTBook.Models;
 using FPTBook.Utils;
 using FPTBook.ViewModels;
@@ -29,47 +28,51 @@ namespace FPTBook.Controllers
             _context = context;
             _userManager = userManager;
         }
-        [HttpGet]
-        public IActionResult Index(string title)
+
+        public IActionResult Index(string word)
         {
-        var bookList = new List<BookDisplayViewModel>();
-        if (bookList is null)
+            var bookList = new List<BookDisplayViewModel>();
+            if (bookList is null)
             {
                 return NotFound();
-            }  
+            }
 
-        IEnumerable<Book> books = _context.Books
-             .Include(t => t.Genre)
-             .ToList();
-        foreach (var book in books)
-        {
-          string imageBase64Data = Convert.ToBase64String(book.ImageData);
-          string image = string.Format("data:image/jpg;base64, {0}", imageBase64Data);
+            if (!string.IsNullOrWhiteSpace(word))
+            {
+                var result = _context.Books
+                  .Include(t => t.Genre)
+                  .Where(t => t.Genre.Description.Contains(word)
+                            || t.Title.Contains(word))
+                  .ToList();
 
-          var newBook = new BookDisplayViewModel()
-          {
-            BookId = book.BookId,
-            Title = book.Title,
-            Author = book.Author,
-            Price = book.Price,
-            Genre = book.Genre,
-            BookStatus = book.BookStatus,
-            ImageUrl = image
-          };
-          bookList.Add(newBook);
-         }
-          
-          if (!string.IsNullOrWhiteSpace(title))
-          {
-            return View(bookList.Where(t=> t.Title.ToLower()
-            .Contains(title.ToLower()))
-              .AsEnumerable());
-          }
-          else
-          {
+                return View(result);
+            }
+
+            IEnumerable<Book> books = _context.Books
+                .Include(t => t.Genre)
+                .ToList();
+
+            foreach (Book book in books)
+            {
+
+                string imageBase64Data = Convert.ToBase64String(book.ImageData);
+                string image = string.Format("data:image/jpg;base64, {0}", imageBase64Data);
+
+                var newBook = new BookDisplayViewModel()
+                {
+                    BookId = book.BookId,
+                    Title = book.Title,
+                    Author = book.Author,
+                    Price = book.Price,
+                    Genre = book.Genre,
+                    BookStatus = book.BookStatus,
+                    ImageUrl = image
+                };
+                bookList.Add(newBook);
+
+            }
+
             return View(bookList.AsEnumerable());
-          }
-
         }
 
         public async Task<IActionResult> AddToCart(int id)
